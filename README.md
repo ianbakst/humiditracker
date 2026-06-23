@@ -75,10 +75,18 @@ Tip: `alias pio=~/.platformio/penv/bin/pio` in your shell profile.
 
 ```
 platformio.ini      project + board + library config
-include/config.h    pin assignments and timing
-src/main.cpp        firmware
+include/
+  config.h          pin assignments and timing
+  reading.h         the Reading data type shared between modules
+src/
+  main.cpp          orchestration: wires modules together + timing
+  sensor.h/.cpp     DHT sensor -> Reading
+  display.h/.cpp    e-paper rendering (all GxEPD2 / panel detail lives here)
 legacy/             original Arduino IDE sketches (reference only, not built)
 ```
+
+Adding a feature (e.g. WiFi/MQTT) is a matter of dropping in a new
+`src/<thing>.h` + `.cpp` pair and wiring it up in `main.cpp`.
 
 The serial output keeps the original JSON line format, e.g.
 `{"humidity": 41.0, "temp": 72.5, "unit": "F"}`.
