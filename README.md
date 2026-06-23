@@ -24,14 +24,14 @@ DHT11:
 | VCC   | 3V3           |
 | GND   | GND           |
 
-E-paper (hardware SPI; wiring follows GxEPD2's suggested D1 mini layout):
+E-paper (hardware SPI; control pins kept off the boot-strapping GPIOs):
 
 | E-paper      | D1 mini      |
 | ------------ | ------------ |
-| BUSY         | D2 (GPIO4)   |
-| RST          | D4 (GPIO2)   |
+| BUSY         | D0 (GPIO16)  |
+| RST          | D2 (GPIO4)   |
 | DC           | D3 (GPIO0)   |
-| CS           | D8 (GPIO15)  |
+| CS           | D1 (GPIO5)   |
 | CLK / SCK    | D5 (GPIO14)  |
 | DIN / MOSI   | D7 (GPIO13)  |
 | VCC          | 3V3          |
