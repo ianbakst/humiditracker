@@ -11,21 +11,22 @@
 #include <GxEPD2_4C.h>
 #include <Fonts/FreeSansBold18pt7b.h>
 #include <Fonts/FreeSansBold12pt7b.h>
+#include <Fonts/FreeSansBold9pt7b.h>
 
 #include "config.h"
 
-// Which 4-color panel do you have? Default is the 4.2" 400x300 (GDEY0420F51).
+// Which 4-color panel do you have? This is set to the 1.54" 152x152 (GDEM0154F51H).
 // Swap this one typedef for your panel; valid 4-color classes in this version:
-//   GxEPD2_154c_GDEM0154F51H   (1.54")
+//   GxEPD2_154c_GDEM0154F51H   (1.54")  <-- current
 //   GxEPD2_213c_GDEY0213F51    (2.13")
 //   GxEPD2_266c_GDEY0266F51H   (2.66")
 //   GxEPD2_290c_GDEY029F51H    (2.9")
 //   GxEPD2_350c_GDEM035F51     (3.5")
-//   GxEPD2_420c_GDEY0420F51    (4.2")   <-- default
+//   GxEPD2_420c_GDEY0420F51    (4.2")
 //   GxEPD2_579c_GDEY0579F51    (5.79")
 //   GxEPD2_750c_GDEM075F52     (7.5")
 //   GxEPD2_1160c_GDEY116F51    (11.6")
-using EpdPanel = GxEPD2_420c_GDEY0420F51;
+using EpdPanel = GxEPD2_154c_GDEM0154F51H;
 
 // Cap the page buffer so it fits ESP8266 RAM. 4-color = 2 bits/pixel, so a
 // row is WIDTH/4 bytes; GxEPD2 pages the draw if the full panel won't fit.
@@ -45,30 +46,33 @@ static unsigned long lastDisplayUpdate = 0;
 static float lastTempF = NAN;
 static float lastHumidity = NAN;
 
+// Layout tuned for the 1.54" 152x152 panel.
 static void drawReadings(float tempF, float humidity) {
-  display.setRotation(1);  // landscape
+  display.setRotation(0);  // 152x152, square
   display.setFullWindow();
   display.firstPage();
   do {
     display.fillScreen(GxEPD_WHITE);
 
-    display.setFont(&FreeSansBold12pt7b);
+    display.setFont(&FreeSansBold9pt7b);
     display.setTextColor(GxEPD_BLACK);
-    display.setCursor(8, 28);
+    display.setCursor(6, 18);
     display.print("Humiditracker");
+    display.drawLine(6, 26, 146, 26, GxEPD_BLACK);
 
     char buf[24];
 
     display.setFont(&FreeSansBold18pt7b);
     display.setTextColor(GxEPD_RED);
     if (isnan(tempF)) {
-      snprintf(buf, sizeof(buf), "-- F");
+      snprintf(buf, sizeof(buf), "--.- F");
     } else {
       snprintf(buf, sizeof(buf), "%.1f F", tempF);
     }
-    display.setCursor(8, 80);
+    display.setCursor(8, 90);
     display.print(buf);
 
+    display.setFont(&FreeSansBold12pt7b);
     display.setTextColor(GxEPD_BLACK);
     if (isnan(humidity)) {
       snprintf(buf, sizeof(buf), "-- %% RH");

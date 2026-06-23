@@ -12,7 +12,7 @@ editing, compiling, uploading, and the serial monitor — lives in VSCode.
 | --------------- | ---------------------------------------- |
 | MCU board       | Wemos/LOLIN D1 mini (ESP8266)            |
 | Sensor          | DHT11 temp/humidity                      |
-| Display         | 4-color e-paper, driven via GxEPD2       |
+| Display         | 1.54" 4-color e-paper (152x152), GxEPD2   |
 
 ### Wiring
 
