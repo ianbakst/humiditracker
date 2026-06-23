@@ -15,17 +15,7 @@
 
 #include "config.h"
 
-// Which 4-color panel do you have? This is set to the 1.54" 152x152 (GDEM0154F51H).
-// Swap this one typedef for your panel; valid 4-color classes in this version:
-//   GxEPD2_154c_GDEM0154F51H   (1.54")  <-- current
-//   GxEPD2_213c_GDEY0213F51    (2.13")
-//   GxEPD2_266c_GDEY0266F51H   (2.66")
-//   GxEPD2_290c_GDEY029F51H    (2.9")
-//   GxEPD2_350c_GDEM035F51     (3.5")
-//   GxEPD2_420c_GDEY0420F51    (4.2")
-//   GxEPD2_579c_GDEY0579F51    (5.79")
-//   GxEPD2_750c_GDEM075F52     (7.5")
-//   GxEPD2_1160c_GDEY116F51    (11.6")
+
 using EpdPanel = GxEPD2_154c_GDEM0154F51H;
 
 // Cap the page buffer so it fits ESP8266 RAM. 4-color = 2 bits/pixel, so a
