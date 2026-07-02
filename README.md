@@ -1,5 +1,7 @@
 # humiditracker
 
+Not too long ago, D'addario produced the Humiditrak, a small device that would go in your guitar case and record temperature and humidity data for you to track the health and environment of your acoustic guitar. They discontinued it. This is my attempt to revive an open-source replacement.
+-------------
 ESP8266 (Wemos/LOLIN D1 mini) temperature + humidity tracker that reads a
 DHT11 sensor and displays the values on a 4-color e-paper screen.
 
